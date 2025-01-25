@@ -27,6 +27,7 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(rb.position);
         if (!isDashing)
         {
             movementDirection = Vector2.zero;
@@ -103,5 +104,25 @@ public class playerMovement : MonoBehaviour
         dashCooldown = false;
         yield return new WaitForSeconds(1);
         isInvincible = false;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        Debug.Log("ooo");
+        // Check if collided object has a BoxCollider2D (for walls)
+        if (collision.gameObject.CompareTag("Walls"))
+        {
+            Debug.Log("Player collided with a wall!");
+
+            // Example: Stop the dash on wall collision
+            if (isDashing)
+            {
+                StopCoroutine(Dash());
+                isDashing = false;
+                rb.velocity = Vector2.zero;
+            }
+        }
     }
 }
