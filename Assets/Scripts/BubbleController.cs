@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BubbleController : MonoBehaviour
 {
@@ -54,9 +55,15 @@ public class BubbleController : MonoBehaviour
             yield return null;
         }
 
-        bubble.localScale = targetScale; 
-        bubble.GetComponent<SpriteRenderer>().sprite = bubblePop;
-        bubble.localScale = new Vector3(initialScale.x / 2, initialScale.y / 2, 0);
+        bubble.localScale = targetScale;
+        Image bubbleImage = bubble.GetComponent<Image>();
+        if (bubbleImage != null)
+        {
+            bubbleImage.sprite = bubblePop;
+        }
+        Debug.Log(targetScale.ToString());
+        Debug.Log(bubble.localScale.ToString());
+        bubble.localScale = new Vector3(initialScale.x * 0.75f, initialScale.y * 0.75f, 0);
         yield return new WaitForSeconds(0.5f); 
         bubble.gameObject.SetActive(false);
     }
