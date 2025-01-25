@@ -61,13 +61,9 @@ public class playerMovement : MonoBehaviour
             if (movementDirection != Vector2.zero)
             {
                 dashDirection = movementDirection.normalized;
-            }
-            else
-            {
-                dashDirection = Vector2.zero;
+                StartCoroutine(Dash());
             }
 
-            StartCoroutine(Dash());
         }
     }
 

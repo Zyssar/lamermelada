@@ -10,6 +10,19 @@ public class BubbleController : MonoBehaviour
     public bool multiplierActive = false;
     public Sprite bubbleSprite;
     public int multiplier = 2;
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            stopPop();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(continuePop());
+        }
+    }
     private void Start()
     {
         StartCoroutine(startPop());
@@ -84,15 +97,42 @@ public class BubbleController : MonoBehaviour
 
     private IEnumerator continuePop()
     {
+        int amount=0;
+        Transform[] activeBubbles = new Transform[transform.childCount];
+        for (int i = 0; i < activeBubbles.Length; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                amount++;
+                activeBubbles[i] = transform.GetChild(i);
+                Debug.Log(activeBubbles[i]);
+            }
+        }
+
+        for (int i = amount - 1; i >= 0; i--)
+        {
+            Debug.Log(amount.ToString());
+            yield return StartCoroutine(PopBubble(activeBubbles[i]));
+        }
+
+    }
+
+    private void stopPop()
+    {
+        int index=0;
         StopAllCoroutines();
         Transform[] activeBubbles = new Transform[transform.childCount];
         for (int i = 0; i < activeBubbles.Length; i++)
         {
             if (transform.GetChild(i).gameObject.activeSelf)
             {
+                index++;
                 activeBubbles[i] = transform.GetChild(i);
+                Debug.Log(activeBubbles[i]);
             }
         }
+        activeBubbles[index - 1].localScale = new Vector3(1,1,1);
+        activeBubbles[index - 1].GetComponent<Image>().sprite = bubbleSprite;
     }
 
     public void restart()
@@ -111,12 +151,46 @@ public class BubbleController : MonoBehaviour
 
     public bool isDead()
     {
-        return (hp == 0);
+        return (hp <= 0);
     }
 
-    public void popBubble(int amount)
+    public IEnumerator damageBubble(int amount)
     {
+        int bubbleAmount = 0;
+        stopPop();
+        Transform[] activeBubbles = new Transform[transform.childCount];
+        for(int i = 0; i< activeBubbles.Length-1; i++)
+        {
+            bubbleAmount++;
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                activeBubbles[i] = transform.GetChild(i);
+            }
+        }
 
+        if (bubbleAmount <= amount)
+        {
+            for(int i= 0; i<bubbleAmount; i++)
+            {
+                activeBubbles[i].GetComponent<Image>().sprite = bubblePop;
+            }
+            yield return new WaitForSeconds(1);
+            for (int i = 0; i < bubbleAmount; i++)
+            {
+                activeBubbles[i].gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = bubbleAmount; i >= bubbleAmount-amount ; i--)
+            {
+                activeBubbles[i].GetComponent<Image>().sprite = bubblePop;
+                yield return new WaitForSeconds(0.05f);
+                activeBubbles[i].gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(0.2f);
+            yield return StartCoroutine(continuePop());
+        }
     }
 
     public void regenerateBubble(int amount)
