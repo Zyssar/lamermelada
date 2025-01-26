@@ -29,7 +29,7 @@ public class basicBubbleBehaviour : MonoBehaviour
             speedMultiplier += Time.deltaTime * 0.1f;
 
             direction = Mathf.Sin(frameCount * speed * speedMultiplier);
-            transform.position += new Vector3(direction * range, 0.1f * Time.fixedDeltaTime, 0);
+            transform.position += new Vector3(direction * range, 2f * Time.fixedDeltaTime, 0);
             yield return null;
         }
         Destroy(this.gameObject);

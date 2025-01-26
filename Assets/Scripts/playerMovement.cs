@@ -13,10 +13,11 @@ public class playerMovement : MonoBehaviour
     public BubbleController bubbleController;
     public staminaView staminaView;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private bool dashCooldown;
     private bool isDashing;
     private bool isInvincible;
+    public bool isAlive = true;
     private Vector2 dashDirection;
     private Vector2 movementDirection;
 
@@ -27,59 +28,65 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isDashing)
+        if (isAlive)
         {
-            movementDirection = Vector2.zero;
+            if (!isDashing)
+            {
+                movementDirection = Vector2.zero;
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                movementDirection += Vector2.up;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                movementDirection += Vector2.down;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                movementDirection += Vector2.left;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                movementDirection += Vector2.right;
-            }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    movementDirection += Vector2.up;
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    movementDirection += Vector2.down;
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    movementDirection += Vector2.left;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    movementDirection += Vector2.right;
+                }
 
-            if (movementDirection != Vector2.zero)
-            {
-                float targetAngle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
-                float smoothedAngle = Mathf.LerpAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
-            }
-        }
-
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !dashCooldown && !isDashing)
-        {
-            if (movementDirection != Vector2.zero)
-            {
-                dashDirection = movementDirection.normalized;
-                StartCoroutine(Dash());
+                if (movementDirection != Vector2.zero)
+                {
+                    float targetAngle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
+                    float smoothedAngle = Mathf.LerpAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
+                }
             }
 
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !dashCooldown && !isDashing)
+            {
+                if (movementDirection != Vector2.zero)
+                {
+                    dashDirection = movementDirection.normalized;
+                    StartCoroutine(Dash());
+                }
+
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (isAlive)
         {
-            rb.velocity = dashDirection * dashSpeed;
-        }
-        else if (movementDirection != Vector2.zero)
-        {
-            rb.velocity = movementDirection.normalized * speed;
-        }
-        else
-        {
-            rb.velocity *= friction;
+            if (isDashing)
+            {
+                rb.velocity = dashDirection * dashSpeed;
+            }
+            else if (movementDirection != Vector2.zero)
+            {
+                rb.velocity = movementDirection.normalized * speed;
+            }
+            else
+            {
+                rb.velocity *= friction;
+            }
         }
     }
 
@@ -107,10 +114,13 @@ public class playerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("basicBubble"))
+        if (isAlive)
         {
-            Destroy(collision.gameObject);
-            bubbleController.regenerateBubble(1);
+            if (collision.gameObject.CompareTag("basicBubble"))
+            {
+                Destroy(collision.gameObject);
+                bubbleController.regenerateBubble(1);
+            }
         }
     }
     
