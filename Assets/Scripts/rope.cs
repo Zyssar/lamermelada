@@ -40,6 +40,7 @@ public class Rope : MonoBehaviour
         {
             // Considerar que el jugador está en el centro y detener el jalón
             isPulledBack = false;
+            UpdateRopeVisual(distance);
             return; // Salir del método para evitar cualquier lógica adicional
         }
 

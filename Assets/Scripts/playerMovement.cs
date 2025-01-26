@@ -121,6 +121,21 @@ public class playerMovement : MonoBehaviour
                 Destroy(collision.gameObject);
                 bubbleController.regenerateBubble(1);
             }
+            if (collision.gameObject.CompareTag("varyingBubble"))
+            {
+                if (gameObject.transform.localScale.x == 0.6f)
+                {
+                    bubbleController.regenerateBubble(2);
+                }
+                else if (gameObject.transform.localScale.x == 0.8f)
+                {
+                    bubbleController.regenerateBubble(3);
+                }
+                else if (gameObject.transform.localScale.x == 1f)
+                {
+                    bubbleController.regenerateBubble(4);
+                }
+            }
         }
     }
     
