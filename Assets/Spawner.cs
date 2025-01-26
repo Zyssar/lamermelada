@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
             roll = Random.Range(0, 10);
             if (roll >= IA)
             {
-                if (IA + roll >= 15)
+                if (IA + roll >= 12)
                 {
 
                     foreach (Enemy enemy in enemies)
