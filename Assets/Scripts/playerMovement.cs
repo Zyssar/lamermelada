@@ -104,4 +104,14 @@ public class playerMovement : MonoBehaviour
         yield return new WaitForSeconds(1);
         isInvincible = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("basicBubble"))
+        {
+            Destroy(collision.gameObject);
+            bubbleController.regenerateBubble(1);
+        }
+    }
+    
 }

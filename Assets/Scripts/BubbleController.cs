@@ -27,6 +27,11 @@ public class BubbleController : MonoBehaviour
         {
             StartCoroutine(damageBubble(2));
         }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            regenerateBubble(3);
+        }
+
     }
     private void Start()
     {
@@ -165,7 +170,6 @@ public class BubbleController : MonoBehaviour
 
         List<Transform> activeBubbles = new List<Transform>();
 
-        // Obtener todas las burbujas activas
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform bubble = transform.GetChild(i);
@@ -180,35 +184,63 @@ public class BubbleController : MonoBehaviour
         if (bubbleAmount == 0)
         {
             Debug.Log("No hay burbujas activas para dañar.");
-            yield break;
         }
 
-        if (bubbleAmount <= amount)
-        {
-            foreach (Transform bubble in activeBubbles)
-            {
-                bubble.GetComponent<Image>().sprite = bubblePop;
-                bubble.gameObject.SetActive(false);
-                hp--;
-            }
-        }
-        else
-        {
-            for (int i = bubbleAmount - 1; i >= bubbleAmount - amount; i--)
-            {
-                Transform bubble = activeBubbles[i];
-                bubble.GetComponent<Image>().sprite = bubblePop;
-                bubble.gameObject.SetActive(false);
-                hp--;
-            }
-        }
+        amount = Mathf.Min(amount, bubbleAmount);
 
-        yield return StartCoroutine(continuePop());
+        for (int i = bubbleAmount - 1; i >= bubbleAmount - amount; i--)
+        {
+            Transform bubble = activeBubbles[i];
+            StartCoroutine(PlayPopEffect(bubble));
+            hp--;
+        }
+        StartCoroutine(waitAndPop());
+        yield return null;
+    }
+
+    IEnumerator waitAndPop()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(continuePop());
     }
 
 
     public void regenerateBubble(int amount)
     {
-
+        stopPop();
+        int additional = amount;
+        Transform[] activeBubbles = new Transform[transform.childCount];
+        for (int i = 0; i < activeBubbles.Length; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                activeBubbles[i] = transform.GetChild(i);
+                Debug.Log(activeBubbles[i]);
+            }else if(additional != 0)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+                transform.GetChild(i).GetComponent<Image>().sprite = bubbleSprite;
+                transform.GetChild(i).localScale = new Vector3(1, 1, 1);
+                activeBubbles[i] = transform.GetChild(i);
+                additional--;
+                hp++;
+                Debug.Log(additional);
+            }
+        }
+        StartCoroutine(continuePop());
     }
+
+    private IEnumerator PlayPopEffect(Transform bubble)
+    {
+        Image bubbleImage = bubble.GetComponent<Image>();
+        if (bubbleImage != null)
+        {
+            bubbleImage.sprite = bubblePop;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        bubble.gameObject.SetActive(false);
+    }
+
 }
