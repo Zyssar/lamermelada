@@ -7,6 +7,7 @@ public class VaryingSizeBubbleBehaviour : MonoBehaviour
     private float speed;
     private float range;
     private float livetime;
+    public int level=1;
 
     private float elapsedTime;
     private float speedMultiplier;
@@ -26,12 +27,15 @@ public class VaryingSizeBubbleBehaviour : MonoBehaviour
         switch (randomSize)
         {
             case 2:
+                level = 2;
                 transform.localScale = new Vector3(0.6f, 0.6f);
                 break;
             case 3:
+                level = 3;
                 transform.localScale = new Vector3(0.8f, 0.8f);
                 break;
             case 4:
+                level = 4;
                 transform.localScale = new Vector3(1f, 1f);
                 break;
             default:
