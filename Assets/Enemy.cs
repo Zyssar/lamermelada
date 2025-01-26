@@ -30,8 +30,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("N");
-            bubbleController.damageBubble(2);
+            Debug.Log("Contacto con jugador");
+            StartCoroutine(bubbleController.damageBubble(2));
         }
     }
 

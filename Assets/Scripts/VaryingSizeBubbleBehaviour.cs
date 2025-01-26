@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class VaryingSizeBubbleBehaviour : MonoBehaviour
@@ -9,19 +8,23 @@ public class VaryingSizeBubbleBehaviour : MonoBehaviour
     private float range;
     private float livetime;
 
-    private int frameCount;
     private float elapsedTime;
     private float speedMultiplier;
     private int randomSize;
 
-    private void Update()
-    {
-     randomSize= (int)Random.Range(1f, 5f);
-    }
     public void InitializeBubble(float speed, float range, float livetime)
     {
+        this.speed = speed;
+        this.range = range;
+        this.livetime = livetime;
 
-        switch (randomSize) {
+        elapsedTime = 0f;
+        speedMultiplier = 0f;
+
+        randomSize = (int)Random.Range(1f, 5f);
+
+        switch (randomSize)
+        {
             case 2:
                 transform.localScale = new Vector3(0.6f, 0.6f);
                 break;
@@ -31,28 +34,30 @@ public class VaryingSizeBubbleBehaviour : MonoBehaviour
             case 4:
                 transform.localScale = new Vector3(1f, 1f);
                 break;
+            default:
+                transform.localScale = new Vector3(0.4f, 0.4f);
+                break;
         }
-
-        this.speed = speed;
-        this.range = range;
-        this.livetime = livetime;
         StartCoroutine(MoveBubble());
         
     }
 
     IEnumerator MoveBubble()
     {
+        Debug.Log("started corutine");
         while (elapsedTime <= livetime)
         {
             elapsedTime += Time.deltaTime;
-            frameCount++;
 
             speedMultiplier += Time.deltaTime * 0.1f;
 
-            direction = Mathf.Sin(frameCount * speed * speedMultiplier);
+            direction = Mathf.Sin(elapsedTime * speed * speedMultiplier);
+
             transform.position += new Vector3(direction * range, 2f * Time.fixedDeltaTime, 0);
+
             yield return null;
         }
         Destroy(this.gameObject);
     }
+
 }
