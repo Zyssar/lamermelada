@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
         direction = player.position - transform.position;
-        RotateTowardsPlayer(direction);
+        RotateTowardsDirection(direction);
         MoveTowardsPlayer(direction);
     }
 
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("aaa");
     }
 
-    public IEnumerator RotateTowardsPlayer(Vector2 direction)
+    public IEnumerator RotateTowardsDirection(Vector2 direction)
     {
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         while (Mathf.Abs(Mathf.DeltaAngle(rb.rotation, targetAngle)) > 0.1f)
@@ -46,5 +46,35 @@ public class Enemy : MonoBehaviour
     public void MoveTowardsPlayer(Vector2 direction)
     {
         transform.position += (Vector3)direction.normalized * difficulty * Time.deltaTime * Speed;
+    }
+
+    public IEnumerator exitScreen()
+    {
+        Vector2 exitDirection = Vector2.zero;
+        int rollDir;
+
+        while (exitDirection == Vector2.zero) {
+            rollDir = Random.Range(-1, 1);
+            Vector2 upDown = Vector2.up * rollDir;
+            rollDir = Random.Range(-1, 1);
+            Vector2 rightLeft = Vector2.right * rollDir;
+            exitDirection = upDown + rightLeft;
+        }
+        float distanceMoved = 0f;
+        StartCoroutine(RotateTowardsDirection(exitDirection));
+        while (true)
+        {
+            float moveAmount = Speed * Time.deltaTime;
+            rb.position += exitDirection * moveAmount;
+            distanceMoved += moveAmount;
+
+            if (distanceMoved >= 20f) // Adjust this to how far you want the object to move
+            {
+                Destroy(gameObject);
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }

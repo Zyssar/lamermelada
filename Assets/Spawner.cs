@@ -24,25 +24,26 @@ public class Spawner : MonoBehaviour
             yield return new WaitForSeconds(5);
             roll = Random.Range(0, 10);
 
+            Debug.Log("roll: " + roll.ToString() + " IA: " + IA.ToString());
             if (roll >= IA)
             {
+                if (IA + roll >= 15)
+                {
 
+                    foreach (Enemy enemy in enemies)
+                    {
+                        if (enemy.difficulty == 4)
+                            Instantiate(enemy, transform.position, Quaternion.identity);
+                    }
+                }
+                else
+                {
+                    Debug.Log("XD");
+                }
             }
 
             Debug.Log(roll + IA);
-            if (IA + roll >= 1)
-            {
-
-                foreach (Enemy enemy in enemies)
-                {
-                    if (enemy.difficulty == 4)
-                        Instantiate(enemy, transform.position, Quaternion.identity);
-                }
-            }
-            else
-            {
-                Debug.Log("XD");
-            }
+            
         }
     }
 }

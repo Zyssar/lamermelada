@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Barracuda : Enemy
 {
-    public float waitTime = 2f;
     private Vector3 targetPosition;
     private bool isExiting = false;
     public float attackDuration = 0.1f;
-    public float exitSpeed = 7f;
+    private int attacksTried = 0;
     private enum State { Idle, MovingToPlayer, Waiting, Exiting }
     private State currentState = State.Idle;
 
@@ -39,25 +38,22 @@ public class Barracuda : Enemy
                     // Capture player's initial position
                     targetPosition = player.position;
                     direction = targetPosition - transform.position;
-                    yield return StartCoroutine(RotateTowardsPlayer(direction));
+                    yield return StartCoroutine(RotateTowardsDirection(direction));
                     yield return StartCoroutine(MoveTowardsPoint(attackDuration));
                     currentState = State.Waiting;
                     break;
 
                 case State.Waiting:
-                    // Wait for a specified amount of time
-                    yield return new WaitForSeconds(waitTime);
-                    currentState = State.MovingToPlayer; // Repeat or decide to exit
+                    attacksTried++;
+                    if (attacksTried >= 5)
+                        currentState = State.Exiting;
+                    else
+                        currentState = State.MovingToPlayer; // Repeat or decide to exit
                     break;
 
                 case State.Exiting:
-                    // Move out of the screen (e.g., to the right)
-                    Vector3 exitDirection = Vector3.right;
-                    while (true)
-                    {
-                        transform.position += exitDirection * exitSpeed * Time.deltaTime;
-                        yield return null;
-                    }
+                    yield return StartCoroutine(exitScreen()); 
+                    break;
             }
         }
     }
@@ -68,12 +64,11 @@ public class Barracuda : Enemy
 
         while (timeElapsed < duration)
         {
-            rb.MovePosition(rb.position + (direction.normalized * difficulty * Time.deltaTime * Speed));
+            rb.position += direction.normalized * Time.deltaTime * Speed;
             timeElapsed += Time.deltaTime;
             yield return null; // Wait for the next frame
         }
     }
-
 
     public void ExitScreen()
     {
