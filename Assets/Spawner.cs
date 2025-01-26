@@ -14,30 +14,35 @@ public class Spawner : MonoBehaviour
     {
         IA = Random.Range(1, 10);
         Debug.Log("IA: " +  IA.ToString());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         StartCoroutine(Spawn());
     }
 
     IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(30/IA);
-        roll = Random.Range(0, 10);
-        Debug.Log(roll.ToString());
-        if (IA + roll >=15)
+        while (true)
         {
-            foreach (Enemy enemy in enemies)
+            yield return new WaitForSeconds(5);
+            roll = Random.Range(0, 10);
+
+            if (roll >= IA)
             {
-                if (enemy.difficulty == 4)
-                    Instantiate(enemy, transform.position, Quaternion.identity);
+
             }
-        }
-        else
-        {
-            Debug.Log("XD");
+
+            Debug.Log(roll + IA);
+            if (IA + roll >= 18)
+            {
+
+                foreach (Enemy enemy in enemies)
+                {
+                    if (enemy.difficulty == 4)
+                        Instantiate(enemy, transform.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                Debug.Log("XD");
+            }
         }
     }
 }

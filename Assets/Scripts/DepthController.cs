@@ -6,50 +6,50 @@ using UnityEngine;
 public class DepthController : MonoBehaviour
 {
     [SerializeField] public TMP_Text depths;
-    public int meters = 0;
-    public float KM = 0;
-    private int frameCount = 0;
+    [SerializeField] public float divingSpeed=5f;
+    [SerializeField] public float timer = 0f;
+    public float meters = 0f;
+    public float KM = 0f;
 
-    void Update()
-    {
-        frameCount++;
-
-        if (frameCount % 180 == 0)
-        {
-            addDepth();
-            if (KM > 0)
-                depths.text = KM.ToString("F1") + " km";
-            else
-                depths.text = meters.ToString() + " m";
-        }
-    }
-
-    void addDepth()
+    void FixedUpdate()
     {
         if (KM > 0)
-        {
-            if (meters >= 100)
-            {
-                KM += 0.1f;
-                meters -= 100;
-            }
-        }
+            depths.text = KM.ToString("F1") + " km";
         else
-        {
-            if (meters >= 1000)
-            {
-                KM += 1f;
-                meters -= 1000;  
-            }
-        }
-
-        meters += 1;  
-        frameCount = 0; 
+            depths.text = meters.ToString() + " m";
     }
+
+    IEnumerator addDepth()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            if (KM > 0)
+            {
+                if (meters >= 100)
+                {
+                    KM += 0.1f;
+                    meters -= 100;
+                }
+            }
+            else
+            {
+                if (meters >= 1000)
+                {
+                    KM += 1f;
+                    meters -= 1000;
+                }
+            }
+
+            meters += divingSpeed;
+        }
+    }
+
 
 
     void Start()
     {
+        StartCoroutine(addDepth());
         depths.text = meters.ToString() + " m";
     }
 }
