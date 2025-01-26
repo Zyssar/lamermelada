@@ -158,6 +158,12 @@ public class playerMovement : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("varyingBubble"))
             {
+                if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 1)
+                {
+                    bubbleController.regenerateBubble(1);
+
+                    Destroy(collision.gameObject);
+                }
                 if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 2)
                 {
                     bubbleController.regenerateBubble(2);
