@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public int IA = 1;
     public bool active = true;
+    public GameObject[] enemiesGO;
     public Enemy[] enemies;
     private int roll;
 
@@ -13,7 +14,23 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         IA = Random.Range(1, 10);
-        Debug.Log("IA: " +  IA.ToString());
+
+        enemies = new Enemy[enemiesGO.Length];
+
+        // Populate the enemies array with Enemies components
+        for (int i = 0; i < enemiesGO.Length; i++)
+        {
+            Enemy enemyComponent = enemiesGO[i].GetComponent<Enemy>();
+            if (enemyComponent != null)
+            {
+                enemies[i] = enemyComponent;
+            }
+            else
+            {
+                Debug.LogWarning($"GameObject {enemiesGO[i].name} does not have an Enemies component.");
+            }
+        }
+
         StartCoroutine(Spawn());
     }
 
@@ -23,8 +40,6 @@ public class Spawner : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             roll = Random.Range(0, 10);
-
-            Debug.Log("roll: " + roll.ToString() + " IA: " + IA.ToString());
             if (roll >= IA)
             {
                 if (IA + roll >= 15)
@@ -38,7 +53,6 @@ public class Spawner : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("XD");
                 }
             }
 

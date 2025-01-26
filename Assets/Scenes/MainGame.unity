@@ -221,6 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &24323073
@@ -496,7 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 152206007}
   - component: {fileID: 152206008}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: background2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,8 +558,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1272968085
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4f63a853b0730384e8166e4e3ce08765, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -720,6 +722,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211973263}
   m_CullTransparentMesh: 1
+--- !u!1001 &256539588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_Name
+      value: Barracuda
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5090065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4112473
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &272510668
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +806,7 @@ Transform:
   m_GameObject: {fileID: 272510668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -12, z: 0}
+  m_LocalPosition: {x: -4, y: -14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -819,6 +878,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &306262387
@@ -848,7 +909,7 @@ Transform:
   m_GameObject: {fileID: 306262387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -12, z: 0}
+  m_LocalPosition: {x: 4, y: -14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -920,6 +981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &397063885
@@ -1175,8 +1238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  enemies: []
 --- !u!1 &475565993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,6 +1415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &537845361
@@ -1591,6 +1657,7 @@ MonoBehaviour:
   midDistance: 8
   maxDistance: 9.5
   pullSpeed: 3
+  spriteTexture: {fileID: 2800000, guid: 5ea51f72af062f0469d30a078680ae24, type: 3}
   ropeRenderer: {fileID: 0}
 --- !u!1 &573271519
 GameObject:
@@ -1602,7 +1669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573271520}
   - component: {fileID: 573271521}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: background1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,8 +1729,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1272968085
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4f63a853b0730384e8166e4e3ce08765, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1918,6 +1985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &769495253
@@ -2364,7 +2433,7 @@ Transform:
   m_GameObject: {fileID: 1022725420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 12, z: 0}
+  m_LocalPosition: {x: 4, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2436,6 +2505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &1069233482
@@ -2901,7 +2972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1194249530}
   - component: {fileID: 1194249529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: backgroundController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4200,7 +4271,7 @@ Transform:
   m_GameObject: {fileID: 2080317528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 12, z: 0}
+  m_LocalPosition: {x: -4, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4272,6 +4343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IA: 0
   active: 1
+  enemiesGO:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &2144807258
@@ -4371,3 +4444,4 @@ SceneRoots:
   - {fileID: 537845363}
   - {fileID: 1194249530}
   - {fileID: 49778676}
+  - {fileID: 256539588}

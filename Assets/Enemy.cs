@@ -10,9 +10,11 @@ public class Enemy : MonoBehaviour
     public Transform player;
     [SerializeField] public float Speed = 2;
     [SerializeField] public float rotationSpeed = 1f;
+    public BubbleController bubbleController;
     public Vector2 direction;
     public void Start()
     {
+        bubbleController = FindObjectOfType<BubbleController>();
         player = FindObjectOfType<playerMovement>().transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -26,7 +28,11 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("aaa");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("N");
+            bubbleController.damageBubble(2);
+        }
     }
 
     public IEnumerator RotateTowardsDirection(Vector2 direction)
