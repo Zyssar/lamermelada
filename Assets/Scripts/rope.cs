@@ -2,59 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rope : MonoBehaviour
+public class Rope : MonoBehaviour
 {
-    [SerializeField] public Vector3 centerPoint; // The center point the player should stay near
-    public float midDistance = 5f; // Max distance from the center point
-    public float maxDistance = 8f;
-    public float pullSpeed = 5f; // Speed at which the player is pulled back
-    private bool isPulledBack=false;
+    [SerializeField] public Vector3 centerPoint; // El punto central al que está anclada la cuerda
+    public float maxDistance = 8f; // Longitud máxima de la cuerda
+    public float pullSpeed = 5f; // Velocidad con la que el jugador es tirado hacia el centro
+    public LineRenderer ropeRenderer; // Componente LineRenderer para la visualización de la cuerda
+
+    private bool isPulledBack = false;
+
+    void Start()
+    {
+        if (ropeRenderer == null)
+        {
+            ropeRenderer = gameObject.AddComponent<LineRenderer>();
+        }
+
+        // Configuración básica del LineRenderer
+        ropeRenderer.startWidth = 0.1f;
+        ropeRenderer.endWidth = 0.1f;
+        ropeRenderer.positionCount = 2;
+        ropeRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        ropeRenderer.startColor = Color.white;
+        ropeRenderer.endColor = Color.white;
+    }
 
     void Update()
     {
-        // Calculate the distance from the center point
+        // Calcular la distancia desde el centro
         float distance = Vector3.Distance(transform.position, centerPoint);
 
-        // If the distance exceeds the max allowed distance
-        if (distance > midDistance) {
-            // Calculate the direction to pull the player back
-            Vector3 directionToCenter = (centerPoint - transform.position).normalized;
-
-            // Move the player back toward the center at the pull speed
-            transform.position += directionToCenter * pullSpeed * Time.deltaTime;
-        }
-        
+        // Si la distancia supera la longitud máxima
         if (distance > maxDistance)
         {
-            // Set the flag to indicate the player surpassed the distance
-            if (!isPulledBack)
-            {
-                isPulledBack = true;
-            }
-
-            // Calculate the direction to pull the player back to the center
+            // Calcular la dirección hacia el punto central
             Vector3 directionToCenter = (centerPoint - transform.position).normalized;
 
-            // Move the player back toward the center at the pull speed
-            transform.position += directionToCenter * 4 * pullSpeed * Time.deltaTime;
+            // Mover el objeto hacia el centro a la velocidad de tirón
+            transform.position += directionToCenter * pullSpeed * Time.deltaTime;
+            isPulledBack = true;
         }
         else
         {
-            // If the player comes back within the radius, pull them back to the center anyway
-            if (isPulledBack)
-            {
-                // Calculate the direction to pull the player back to the center
-                Vector3 directionToCenter = (centerPoint - transform.position).normalized;
+            isPulledBack = false;
+        }
 
-                // Move the player back toward the center at the pull speed
-                transform.position += directionToCenter *  2 * pullSpeed * Time.deltaTime;
+        // Actualizar la visualización de la cuerda
+        UpdateRopeVisual(distance);
+    }
 
-                // Ensure the player is fully pulled back before allowing normal movement
-                if (Vector3.Distance(transform.position, centerPoint) <= 0.1f)
-                {
-                    isPulledBack = false;
-                }
-            }
+    void UpdateRopeVisual(float distance)
+    {
+        // Establecer los puntos del LineRenderer (origen y destino)
+        ropeRenderer.SetPosition(0, centerPoint);
+        ropeRenderer.SetPosition(1, transform.position);
+
+        // Si la cuerda está estirada al máximo, mantenerla tensa
+        if (distance >= maxDistance)
+        {
+            ropeRenderer.startColor = Color.red; // Cambiar color a rojo para indicar tensión
+            ropeRenderer.endColor = Color.red;
+        }
+        else
+        {
+            ropeRenderer.startColor = Color.white; // Restablecer el color
+            ropeRenderer.endColor = Color.white;
         }
     }
 }
