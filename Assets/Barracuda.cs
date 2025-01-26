@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barracuda : MonoBehaviour
+public class Barracuda : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] public Transform playerPos;
+    [SerializeField] public new int difficulty = 4;
+    public void Start()
     {
-        
     }
 
     // Update is called once per frame

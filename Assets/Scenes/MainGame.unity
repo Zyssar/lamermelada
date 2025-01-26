@@ -219,8 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &24323073
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +448,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87990148}
   m_CullTransparentMesh: 1
+--- !u!1 &124409277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124409279}
+  - component: {fileID: 124409278}
+  m_Layer: 0
+  m_Name: EnemyPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &124409278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124409277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1899e698215a6c4986b09280cdeb2c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 1
+--- !u!4 &124409279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124409277}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.2308652, y: -0.98016274, z: 0.32948604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162710933
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +670,7 @@ Transform:
   m_GameObject: {fileID: 272510668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -10, z: 0}
+  m_LocalPosition: {x: -4, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -693,8 +740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &306262387
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +771,7 @@ Transform:
   m_GameObject: {fileID: 306262387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -10, z: 0}
+  m_LocalPosition: {x: 4, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -792,8 +841,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &397063885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,8 +1096,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &475565993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,8 +1272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &537845361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,8 +1305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0865ff3cce1953429bf208e532e4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies: []
-  playerPos: {fileID: 549267904}
   Spawners:
   - {fileID: 465359810}
   - {fileID: 306262390}
@@ -1261,8 +1314,6 @@ MonoBehaviour:
   - {fileID: 2080317531}
   - {fileID: 1022725423}
   - {fileID: 484844967}
-  minSpawnTime: 0
-  maxSpawnTime: 0
 --- !u!4 &537845363
 Transform:
   m_ObjectHideFlags: 0
@@ -1722,8 +1773,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &769495253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2135,7 @@ Transform:
   m_GameObject: {fileID: 1022725420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 10, z: 0}
+  m_LocalPosition: {x: 4, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2152,8 +2205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1 &1069233482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,6 +2632,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c47ed6113812334880df64f1659cf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 1
+  playerPos: {fileID: 549267904}
+  difficulty: 1
 --- !u!212 &1389697838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3558,7 +3616,7 @@ Transform:
   m_GameObject: {fileID: 2080317528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 10, z: 0}
+  m_LocalPosition: {x: -4, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3628,8 +3686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  IA: 0
   active: 1
+  enemies:
+  - {fileID: 1389697837}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3643,3 +3703,4 @@ SceneRoots:
   - {fileID: 1489763257}
   - {fileID: 537845363}
   - {fileID: 1389697839}
+  - {fileID: 124409279}
