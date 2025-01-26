@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
             }
 
             Debug.Log(roll + IA);
-            if (IA + roll >= 18)
+            if (IA + roll >= 1)
             {
 
                 foreach (Enemy enemy in enemies)
