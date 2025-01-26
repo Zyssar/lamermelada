@@ -27,7 +27,6 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(rb.position);
         if (!isDashing)
         {
             movementDirection = Vector2.zero;
@@ -84,7 +83,9 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator Dash()
+
+
+private IEnumerator Dash()
     {
         isDashing = true;
         dashCooldown = true;
@@ -109,20 +110,27 @@ public class playerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        Debug.Log("ooo");
-        // Check if collided object has a BoxCollider2D (for walls)
         if (collision.gameObject.CompareTag("Walls"))
         {
             Debug.Log("Player collided with a wall!");
 
-            // Example: Stop the dash on wall collision
+            // Prevent further movement by zeroing out velocity
+            rb.velocity = Vector2.zero;
+
+            // Get the point of contact and adjust the position to stay within bounds
+            ContactPoint2D contactPoint = collision.contacts[0];
+            Vector2 correctionDirection = contactPoint.normal; // Normal points away from the wall
+
+            // Slightly push the player away from the wall to prevent overlapping
+            transform.position = (Vector2)transform.position + correctionDirection * 0.01f;
+
+            // If dashing, stop the dash
             if (isDashing)
             {
                 StopCoroutine(Dash());
                 isDashing = false;
-                rb.velocity = Vector2.zero;
             }
         }
     }
+
 }
