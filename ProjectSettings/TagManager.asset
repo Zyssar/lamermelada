@@ -7,11 +7,12 @@ TagManager:
   - Walls
   - basicBubble
   - varyingBubble
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - 
@@ -41,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1272968085
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 468983846681731581}
   m_Layer: 0
   m_Name: Barracuda
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,6 @@ MonoBehaviour:
   rotationSpeed: 5
   direction: {x: 0, y: 0}
   attackDuration: 1
-  exitSpeed: 5
 --- !u!61 &7475284766173509194
 BoxCollider2D:
   m_ObjectHideFlags: 0

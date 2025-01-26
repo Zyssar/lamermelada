@@ -5,7 +5,6 @@ using UnityEngine;
 public class Barracuda : Enemy
 {
     private Vector3 targetPosition;
-    private bool isExiting = false;
     public float attackDuration = 0.1f;
     private int attacksTried = 0;
     private enum State { Idle, MovingToPlayer, Waiting, Exiting }
@@ -24,7 +23,7 @@ public class Barracuda : Enemy
 
     private IEnumerator StateMachine()
     {
-        while (!isExiting)
+        while (true)
         {
             switch (currentState)
             {
@@ -68,11 +67,6 @@ public class Barracuda : Enemy
             timeElapsed += Time.deltaTime;
             yield return null; // Wait for the next frame
         }
-    }
-
-    public void ExitScreen()
-    {
-        isExiting = true;
     }
 }
 

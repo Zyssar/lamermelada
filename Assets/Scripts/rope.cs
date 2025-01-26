@@ -10,6 +10,7 @@ public class Rope : MonoBehaviour
     public float maxDistance = 8f; // Distancia máxima donde se jala con más fuerza
     public float pullSpeed = 5f; // Velocidad de jalón en midDistance
     private bool isPulledBack = false;
+    [SerializeField] Texture2D spriteTexture;
 
     public LineRenderer ropeRenderer; // Componente LineRenderer para la visualización de la cuerda
 
@@ -28,6 +29,14 @@ public class Rope : MonoBehaviour
         ropeRenderer.material = new Material(Shader.Find("Sprites/Default"));
         ropeRenderer.startColor = Color.white;
         ropeRenderer.endColor = Color.white;
+
+        if (spriteTexture != null)
+        {
+            ropeRenderer.material.mainTexture = spriteTexture;
+            ropeRenderer.material.mainTextureScale = new Vector2(1, 1); // Adjust for tiling
+        }
+
+        ropeRenderer.textureMode = LineTextureMode.Tile;
     }
 
     void Update()
