@@ -1478,8 +1478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {x: 0, y: 0, z: 0}
-  maxDistance: 6
-  pullSpeed: 4
+  centerRadius: 5
+  midDistance: 8
+  maxDistance: 9.5
+  pullSpeed: 3
   ropeRenderer: {fileID: 0}
 --- !u!1 &589115777
 GameObject:
