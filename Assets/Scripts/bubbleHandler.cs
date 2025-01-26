@@ -34,7 +34,7 @@ public class bubbleHandler : MonoBehaviour
             basicBubbleBehaviour bubbleBehaviour = currentInstance.GetComponent<basicBubbleBehaviour>();
 
             float startX = Random.Range(minRange, maxRange);
-            currentInstance.transform.position = new Vector3(startX, -8f, 0f);
+            currentInstance.transform.position = new Vector3(startX, -11f, 0f);
 
             float speed = Random.Range(speedMinRange, speedMaxRange);
             float range = Random.Range(rangeMinRange, rangeMaxRange);
@@ -53,7 +53,7 @@ public class bubbleHandler : MonoBehaviour
             VaryingSizeBubbleBehaviour bubbleBehaviour = currentInstance.GetComponent<VaryingSizeBubbleBehaviour>();
 
             float startX = Random.Range(minRange, maxRange);
-            currentInstance.transform.position = new Vector3(startX, -8f, 0f);
+            currentInstance.transform.position = new Vector3(startX, -11f, 0f);
 
             float speed = Random.Range(speedMinRange, speedMaxRange);
             float range = Random.Range(rangeMinRange, rangeMaxRange);

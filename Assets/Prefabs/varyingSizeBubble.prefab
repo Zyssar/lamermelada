@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4053172109065498632}
   m_Layer: 0
   m_Name: varyingSizeBubble
-  m_TagString: basicBubble
+  m_TagString: varyingBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9874b841cda7444b987dfefe124902a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1

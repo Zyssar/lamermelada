@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerMovement : MonoBehaviour
@@ -12,11 +13,12 @@ public class playerMovement : MonoBehaviour
     public float friction = 0.9f;
     public BubbleController bubbleController;
     public staminaView staminaView;
+    public SpriteRenderer playerRenderer; 
 
     public Rigidbody2D rb;
     private bool dashCooldown;
     private bool isDashing;
-    private bool isInvincible;
+    public bool isInvincible;
     public bool isAlive = true;
     private Vector2 dashDirection;
     private Vector2 movementDirection;
@@ -24,6 +26,7 @@ public class playerMovement : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        playerRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -66,7 +69,6 @@ public class playerMovement : MonoBehaviour
                     dashDirection = movementDirection.normalized;
                     StartCoroutine(Dash());
                 }
-
             }
         }
     }
@@ -99,18 +101,51 @@ public class playerMovement : MonoBehaviour
 
         rb.velocity = Vector2.zero;
 
+        StartCoroutine(ChangeOpacity());
+
         yield return new WaitForSeconds(dashDuration);
 
         isDashing = false;
         bubbleController.multiplierActive = false;
 
+        StopCoroutine(ChangeOpacity());
+
         StartCoroutine(staminaView.barRefill(dashCooldownTime));
         yield return new WaitForSeconds(dashCooldownTime);
 
         dashCooldown = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         isInvincible = false;
     }
+
+    private IEnumerator ChangeOpacity()
+    {
+        float time = 0f;
+        while (isInvincible)
+        {
+            float alpha = Mathf.PingPong(time, 1f) * 0.5f + 0.5f; 
+            Color color = playerRenderer.color;
+            color.a = alpha;
+            playerRenderer.color = color;
+
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+
+        Color finalColor = playerRenderer.color;
+        finalColor.a = 1f;
+        playerRenderer.color = finalColor;
+    }
+
+    public IEnumerator InvincibilityAfterHit()
+    {
+        isInvincible = true;
+        StartCoroutine(ChangeOpacity());
+        yield return new WaitForSeconds(1.5f);
+        isInvincible = false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -123,20 +158,24 @@ public class playerMovement : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("varyingBubble"))
             {
-                if (gameObject.transform.localScale.x == 0.6f)
+                if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 2)
                 {
                     bubbleController.regenerateBubble(2);
+
+                    Destroy(collision.gameObject);
                 }
-                else if (gameObject.transform.localScale.x == 0.8f)
+                else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 3)
                 {
                     bubbleController.regenerateBubble(3);
+
+                    Destroy(collision.gameObject);
                 }
-                else if (gameObject.transform.localScale.x == 1f)
+                else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 4)
                 {
                     bubbleController.regenerateBubble(4);
+                    Destroy(collision.gameObject);
                 }
             }
         }
     }
-    
 }

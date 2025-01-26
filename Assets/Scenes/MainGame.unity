@@ -734,6 +734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barracuda
       objectReference: {fileID: 0}
+    - target: {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+      propertyPath: bubbleController
+      value: 
+      objectReference: {fileID: 1339512408}
     - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5090065
@@ -1638,7 +1642,9 @@ MonoBehaviour:
   friction: 0.9
   bubbleController: {fileID: 1339512408}
   staminaView: {fileID: 1673877896}
+  playerRenderer: {fileID: 0}
   rb: {fileID: 0}
+  isInvincible: 0
   isAlive: 1
 --- !u!114 &549267907
 MonoBehaviour:
@@ -2904,7 +2910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1124450442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2991,8 +2997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d4243033ce0c64fbe04167a61bd933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -2
-  backgroundHeight: 0
+  scrollSpeed: 2
 --- !u!4 &1194249530
 Transform:
   m_ObjectHideFlags: 0
@@ -3695,6 +3700,10 @@ PrefabInstance:
     - target: {fileID: 269605896608095614, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
       propertyPath: m_Name
       value: bubbleController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037477197142255196, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
+      propertyPath: liveTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1037477197142255196, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
       propertyPath: varyingBubble

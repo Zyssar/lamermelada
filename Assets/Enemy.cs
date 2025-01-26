@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Enemy : MonoBehaviour
 {
     public int difficulty = 1;
@@ -12,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float rotationSpeed = 1f;
     public BubbleController bubbleController;
     public Vector2 direction;
+
     public void Start()
     {
         bubbleController = FindObjectOfType<BubbleController>();
@@ -28,9 +28,14 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !collision.gameObject.GetComponent<playerMovement>().isInvincible)
         {
             Debug.Log("Contacto con jugador");
+
+            // Activar invulnerabilidad en el jugador por 1.5 segundos
+            StartCoroutine(collision.gameObject.GetComponent<playerMovement>().InvincibilityAfterHit());
+
+            // Llamar al daño
             StartCoroutine(bubbleController.damageBubble(2));
         }
     }
@@ -48,7 +53,6 @@ public class Enemy : MonoBehaviour
         rb.rotation = targetAngle;
     }
 
-
     public void MoveTowardsPlayer(Vector2 direction)
     {
         transform.position += (Vector3)direction.normalized * difficulty * Time.deltaTime * Speed;
@@ -59,7 +63,8 @@ public class Enemy : MonoBehaviour
         Vector2 exitDirection = Vector2.zero;
         int rollDir;
 
-        while (exitDirection == Vector2.zero) {
+        while (exitDirection == Vector2.zero)
+        {
             rollDir = Random.Range(-1, 1);
             Vector2 upDown = Vector2.up * rollDir;
             rollDir = Random.Range(-1, 1);
