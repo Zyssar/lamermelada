@@ -10,6 +10,7 @@ public class basicBubbleBehaviour : MonoBehaviour
 
     private int frameCount;
     private float elapsedTime;
+    private float speedMultiplier;
     public void InitializeBubble(float speed, float range, float livetime)
     {
         this.speed = speed;
@@ -24,8 +25,11 @@ public class basicBubbleBehaviour : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             frameCount++;
-            direction = Mathf.Sin(frameCount * speed);
-            transform.position += new Vector3(direction * range, 0.01f, 0);
+
+            speedMultiplier += Time.deltaTime * 0.1f;
+
+            direction = Mathf.Sin(frameCount * speed * speedMultiplier);
+            transform.position += new Vector3(direction * range, 0.1f * Time.fixedDeltaTime, 0);
             yield return null;
         }
         Destroy(this.gameObject);

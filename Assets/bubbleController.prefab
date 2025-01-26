@@ -53,4 +53,4 @@ MonoBehaviour:
   rangeMaxRange: 0.7
   randMinRange: 0
   randMaxRange: 10
-  liveTime: 5
+  liveTime: 10
