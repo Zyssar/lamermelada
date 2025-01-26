@@ -722,67 +722,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211973263}
   m_CullTransparentMesh: 1
---- !u!1001 &256539588
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_Name
-      value: Barracuda
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: bubbleController
-      value: 
-      objectReference: {fileID: 1339512408}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.5090065
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.4112473
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7933237507868553381, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &272510668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,9 +1581,7 @@ MonoBehaviour:
   friction: 0.9
   bubbleController: {fileID: 1339512408}
   staminaView: {fileID: 1673877896}
-  playerRenderer: {fileID: 0}
   rb: {fileID: 0}
-  isInvincible: 0
   isAlive: 1
 --- !u!114 &549267907
 MonoBehaviour:
@@ -2910,7 +2847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1124450442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2997,7 +2934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d4243033ce0c64fbe04167a61bd933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 2
+  scrollSpeed: -2
 --- !u!4 &1194249530
 Transform:
   m_ObjectHideFlags: 0
@@ -3700,10 +3637,6 @@ PrefabInstance:
     - target: {fileID: 269605896608095614, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
       propertyPath: m_Name
       value: bubbleController
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037477197142255196, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
-      propertyPath: liveTime
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1037477197142255196, guid: 7de7c9f8f82327d41ba604cd40bdaca4, type: 3}
       propertyPath: varyingBubble
@@ -4453,4 +4386,3 @@ SceneRoots:
   - {fileID: 537845363}
   - {fileID: 1194249530}
   - {fileID: 49778676}
-  - {fileID: 256539588}
