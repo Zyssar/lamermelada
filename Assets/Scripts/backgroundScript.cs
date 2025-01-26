@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class backgroundScript : MonoBehaviour
+public class BackgroundScroller : MonoBehaviour
 {
-    public float scrollSpeed = 2f;
-    public float backgroundHeight;
-
+    public float scrollSpeed = 2f; 
+    private float backgroundHeight; 
     private Transform[] backgrounds;
-
     private void Start()
     {
         backgrounds = new Transform[transform.childCount];
@@ -19,35 +17,40 @@ public class backgroundScript : MonoBehaviour
 
         if (backgrounds.Length > 0)
         {
-            backgroundHeight = backgrounds[0].GetComponent<SpriteRenderer>().bounds.size.y;
+            SpriteRenderer sr = backgrounds[0].GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                backgroundHeight = sr.bounds.size.y;
+            }
         }
     }
+     
 
     private void Update()
     {
         foreach (var background in backgrounds)
         {
-            background.position += Vector3.down * scrollSpeed * Time.deltaTime;
+            background.position += Vector3.up * scrollSpeed * Time.deltaTime;
 
-            if (background.position.y < -backgroundHeight)
+               if (background.position.y > backgroundHeight)
             {
-                float highestY = GetHighestBackgroundY();
-                background.position = new Vector3(background.position.x, highestY + backgroundHeight, background.position.z);
+                float lowestY = GetLowestBackgroundY();
+                background.position = new Vector3(background.position.x, lowestY - backgroundHeight, background.position.z);
             }
         }
     }
 
-    private float GetHighestBackgroundY()
+    private float GetLowestBackgroundY()
     {
-        float highestY = float.MinValue;
+        float lowestY = float.MaxValue;
         foreach (var background in backgrounds)
         {
-            if (background.position.y > highestY)
+            if (background.position.y < lowestY)
             {
-                highestY = background.position.y;
+                lowestY = background.position.y;
             }
         }
-        return highestY;
+        return lowestY;
     }
 
 }

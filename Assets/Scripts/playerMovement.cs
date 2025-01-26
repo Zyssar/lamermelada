@@ -7,7 +7,7 @@ public class playerMovement : MonoBehaviour
     public float speed = 5f;
     public float rotationSpeed = 5f;
     public float dashSpeed = 15f;
-    public float dashDuration = 0.2f; // Duración del dash
+    public float dashDuration = 0.2f;
     public float dashCooldownTime = 3f;
     public float friction = 0.9f;
     public BubbleController bubbleController;

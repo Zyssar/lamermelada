@@ -8,7 +8,6 @@ public class basicBubbleBehaviour : MonoBehaviour
     private float range;
     private float livetime;
 
-    private int frameCount;
     private float elapsedTime;
     private float speedMultiplier;
     public void InitializeBubble(float speed, float range, float livetime)
@@ -24,11 +23,10 @@ public class basicBubbleBehaviour : MonoBehaviour
         while (elapsedTime <= livetime)
         {
             elapsedTime += Time.deltaTime;
-            frameCount++;
 
             speedMultiplier += Time.deltaTime * 0.1f;
 
-            direction = Mathf.Sin(frameCount * speed * speedMultiplier);
+            direction = Mathf.Sin(elapsedTime * speed * speedMultiplier);
             transform.position += new Vector3(direction * range, 2f * Time.fixedDeltaTime, 0);
             yield return null;
         }
