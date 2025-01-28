@@ -7,7 +7,6 @@ public class DepthController : MonoBehaviour
 {
     [SerializeField] public TMP_Text depths;
     [SerializeField] public float divingSpeed = 5f;
-    [SerializeField] public float timer = 0f;
     public float meters = 0f;
     public float KM = 0f;
 

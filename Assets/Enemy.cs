@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     [SerializeField] public float Speed = 2;
     [SerializeField] public float rotationSpeed = 1f;
+    [SerializeField] public int damage = 2;
     public BubbleController bubbleController;
     public Vector2 direction;
 
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<playerMovement>().InvincibilityAfterHit());
 
             // Llamar al daño
-            StartCoroutine(bubbleController.damageBubble(2));
+            StartCoroutine(bubbleController.damageBubble(damage));
         }
     }
 

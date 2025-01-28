@@ -220,7 +220,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -749,7 +751,7 @@ Transform:
   m_GameObject: {fileID: 272510668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -14, z: 0}
+  m_LocalPosition: {x: -4, y: -14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,7 +822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -852,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 306262387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -14, z: 0}
+  m_LocalPosition: {x: 4, y: -14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -923,7 +927,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -1176,7 +1182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies: []
@@ -1353,7 +1361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -1925,7 +1935,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -1961,7 +1973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depths: {fileID: 1014274298}
   divingSpeed: 10
-  timer: 0
   meters: 0
   KM: 0
 --- !u!4 &769495255
@@ -2374,7 +2385,7 @@ Transform:
   m_GameObject: {fileID: 1022725420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 14, z: 0}
+  m_LocalPosition: {x: 4, y: 14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2445,7 +2456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
@@ -4212,7 +4225,7 @@ Transform:
   m_GameObject: {fileID: 2080317528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 14, z: 0}
+  m_LocalPosition: {x: -4, y: 14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4283,7 +4296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IA: 0
-  active: 1
+  timer: 40
+  depth: 0
+  depthController: {fileID: 769495254}
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
