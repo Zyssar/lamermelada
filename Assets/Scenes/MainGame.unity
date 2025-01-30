@@ -227,6 +227,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &24323073
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +830,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &306262387
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,6 +936,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &397063885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1191,7 @@ MonoBehaviour:
   enemiesGO:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies: []
+  waitTimer: 0
 --- !u!1 &475565993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,6 +1372,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &537845361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1588,8 @@ MonoBehaviour:
   rotationSpeed: 10
   dashSpeed: 20
   dashDuration: 0.2
-  dashCooldownTime: 2.5
+  staminaReloadTime: 3
+  availableStamina: 1
   friction: 0.9
   bubbleController: {fileID: 1339512408}
   staminaView: {fileID: 1673877896}
@@ -1942,6 +1948,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &769495253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,6 +2470,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &1069233482
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,8 +3113,9 @@ MonoBehaviour:
   bubblePop: {fileID: 21300000, guid: d853e9686657fd54bbb8ed39c646bb33, type: 3}
   multiplierActive: 0
   bubbleSprite: {fileID: 21300000, guid: 148429b027ad94d478670a7cd2897560, type: 3}
-  multiplier: 3
+  multiplier: 2
   maxHp: 15
+  hp: 15
 --- !u!1 &1400054210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3599,6 +3608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673877895}
   - component: {fileID: 1673877896}
+  - component: {fileID: 1673877897}
   m_Layer: 5
   m_Name: Stamina
   m_TagString: Untagged
@@ -3638,6 +3648,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c483f06e8c4455644bb85db6e1e39be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bar: {fileID: 0}
+--- !u!114 &1673877897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673877894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c74b72e90224cf489cef9d257e1ac44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvailableBars: 0
+  TotalBars: 0
+  timeToConsume: 0
+  regenenerateTime: 0
 --- !u!1001 &1677686753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4303,6 +4330,7 @@ MonoBehaviour:
   - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
   enemies:
   - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  waitTimer: 0
 --- !u!1 &2144807258
 GameObject:
   m_ObjectHideFlags: 0

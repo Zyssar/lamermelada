@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,14 +10,15 @@ public class playerMovement : MonoBehaviour
     public float rotationSpeed = 5f;
     public float dashSpeed = 15f;
     public float dashDuration = 0.2f;
-    public float dashCooldownTime = 3f;
+    public float staminaReloadTime = 3f;
+    public int availableStamina = 1;
     public float friction = 0.9f;
     public BubbleController bubbleController;
-    public staminaView staminaView;
+    public StaminaController staminaView;
     public SpriteRenderer playerRenderer; 
 
     public Rigidbody2D rb;
-    private bool dashCooldown;
+    private bool enoughStamina;
     private bool isDashing;
     public bool isInvincible;
     public bool isAlive = true;
@@ -62,7 +64,7 @@ public class playerMovement : MonoBehaviour
                 }
             }
 
-            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !dashCooldown && !isDashing)
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !enoughStamina && !isDashing)
             {
                 if (movementDirection != Vector2.zero)
                 {
@@ -95,7 +97,7 @@ public class playerMovement : MonoBehaviour
     private IEnumerator Dash()
     {
         isDashing = true;
-        dashCooldown = true;
+        enoughStamina = true;
         isInvincible = true;
         bubbleController.multiplierActive = true;
 
@@ -109,11 +111,11 @@ public class playerMovement : MonoBehaviour
 
         StopCoroutine(ChangeOpacity());
 
-        StartCoroutine(staminaView.barRefill(dashCooldownTime));
-        yield return new WaitForSeconds(dashCooldownTime);
+        StartCoroutine(staminaView.barRefill(staminaReloadTime));
+        yield return new WaitForSeconds(staminaReloadTime);
 
         bubbleController.multiplierActive = false;
-        dashCooldown = false;
+        enoughStamina = false;
         yield return new WaitForSeconds(0.3f);
         isInvincible = false;
     }
@@ -158,29 +160,20 @@ public class playerMovement : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("varyingBubble"))
             {
-                if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 1)
+                switch (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level)
                 {
-                    bubbleController.RegenerateBubble(1);
+                    case 1:
+                        bubbleController.RegenerateBubble(1); break;
+                    case 2:
+                        bubbleController.RegenerateBubble(2); break;
+                    case 3:
+                        bubbleController.RegenerateBubble(3); break;
+                    case 4:
+                        bubbleController.RegenerateBubble(4); break;
+                    default:
+                        bubbleController.RegenerateBubble(1); break;
+                }
 
-                    Destroy(collision.gameObject);
-                }
-                if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 2)
-                {
-                    bubbleController.RegenerateBubble(2);
-
-                    Destroy(collision.gameObject);
-                }
-                else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 3)
-                {
-                    bubbleController.RegenerateBubble(3);
-
-                    Destroy(collision.gameObject);
-                }
-                else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 4)
-                {
-                    bubbleController.RegenerateBubble(4);
-                    Destroy(collision.gameObject);
-                }
             }
         }
     }
