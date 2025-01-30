@@ -10,7 +10,7 @@ public class reset : MonoBehaviour
     public playerMovement playerMovement;
     void Update()
     {
-        if (bubbleController.isDead())
+        if (bubbleController.IsDead())
         {
             playerMovement.isAlive = false;
             transform.GetChild(0).gameObject.SetActive(true);

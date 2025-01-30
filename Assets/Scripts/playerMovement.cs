@@ -106,13 +106,13 @@ public class playerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
 
         isDashing = false;
-        bubbleController.multiplierActive = false;
 
         StopCoroutine(ChangeOpacity());
 
         StartCoroutine(staminaView.barRefill(dashCooldownTime));
         yield return new WaitForSeconds(dashCooldownTime);
 
+        bubbleController.multiplierActive = false;
         dashCooldown = false;
         yield return new WaitForSeconds(0.3f);
         isInvincible = false;
@@ -154,31 +154,31 @@ public class playerMovement : MonoBehaviour
             if (collision.gameObject.CompareTag("basicBubble"))
             {
                 Destroy(collision.gameObject);
-                bubbleController.regenerateBubble(1);
+                bubbleController.RegenerateBubble(1);
             }
             if (collision.gameObject.CompareTag("varyingBubble"))
             {
                 if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 1)
                 {
-                    bubbleController.regenerateBubble(1);
+                    bubbleController.RegenerateBubble(1);
 
                     Destroy(collision.gameObject);
                 }
                 if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 2)
                 {
-                    bubbleController.regenerateBubble(2);
+                    bubbleController.RegenerateBubble(2);
 
                     Destroy(collision.gameObject);
                 }
                 else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 3)
                 {
-                    bubbleController.regenerateBubble(3);
+                    bubbleController.RegenerateBubble(3);
 
                     Destroy(collision.gameObject);
                 }
                 else if (collision.gameObject.GetComponent<VaryingSizeBubbleBehaviour>().level == 4)
                 {
-                    bubbleController.regenerateBubble(4);
+                    bubbleController.RegenerateBubble(4);
                     Destroy(collision.gameObject);
                 }
             }
