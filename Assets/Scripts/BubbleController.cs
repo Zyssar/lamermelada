@@ -20,27 +20,6 @@ public class BubbleController : MonoBehaviour
     private List<IEnumerator> PopAnimations;
     private List<int> PopAnimationsIndex;
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StopPop();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(StartPop());
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartCoroutine(damageBubble(2));
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            RegenerateBubble(3);
-        }
-
-    }
     private void Start()
     {
         PopCoroutines = new List<IEnumerator>();

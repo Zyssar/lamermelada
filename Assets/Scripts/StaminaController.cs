@@ -6,31 +6,40 @@ using UnityEngine.UI;
 public class StaminaController : MonoBehaviour
 {
     private Image bar;
-    public int AvailableBars;
-    public int TotalBars;
-    public float timeToConsume;
-    public float regenenerateTime;
+    public int TotalBars = 1; //para upgradear
+    public float regenerateAmount = 1; // tasa de regeneración
+    public float barCost = 1; // consumo en cuanto a barras
+    public float currentStamina;
+    public int speedLevel = 1; //para upgradear
 
     private void Start()
     {
         bar = gameObject.GetComponentInChildren<Image>();
+        
     }
 
     void Update()
     {
-    }
-
-    public IEnumerator barRefill(float time)
-    {
-        float filling = time / 50;
-        bar.fillAmount = 0;
-        while (bar.fillAmount < 1)
+        bar.fillAmount = currentStamina;
+        if(bar.fillAmount < 1)
         {
-            yield return new WaitForSeconds(filling);
-            bar.fillAmount += 0.02f;
+            bar.fillAmount += regenerateAmount / TotalBars * speedLevel * Time.deltaTime ;
+            
         }
-
+        currentStamina = bar.fillAmount;
     }
+
+    public void useStamina()
+    {
+        if(currentStamina >= barCost/TotalBars)
+        {
+            currentStamina -= barCost/TotalBars;
+        }
+    }
+
+
+
+
     /* habria que hacer que la stamina se controle aca
      * cada nivel de stamina te deja agregar una barra más
      * que tan solo seria disminuir el tiempo en que se regenera la barra total

@@ -10,11 +10,10 @@ public class playerMovement : MonoBehaviour
     public float rotationSpeed = 5f;
     public float dashSpeed = 15f;
     public float dashDuration = 0.2f;
-    public float staminaReloadTime = 3f;
     public int availableStamina = 1;
     public float friction = 0.9f;
     public BubbleController bubbleController;
-    public StaminaController staminaView;
+    public StaminaController staminaController;
     public SpriteRenderer playerRenderer; 
 
     public Rigidbody2D rb;
@@ -111,12 +110,15 @@ public class playerMovement : MonoBehaviour
 
         StopCoroutine(ChangeOpacity());
 
-        StartCoroutine(staminaView.barRefill(staminaReloadTime));
-        yield return new WaitForSeconds(staminaReloadTime);
+        staminaController.useStamina();
+        while (staminaController.currentStamina < staminaController.barCost / staminaController.TotalBars)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
 
         bubbleController.multiplierActive = false;
         enoughStamina = false;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         isInvincible = false;
     }
 
