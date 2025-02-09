@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,67 +9,29 @@ public class BubbleController : MonoBehaviour
 {
     public float timeToPop = 1.5f; 
     public Sprite bubblePop;
-    private int hp;
     public bool multiplierActive = false;
     public Sprite bubbleSprite;
     public int multiplier = 2;
     public int maxHp = 15;
+    public int hp;
+    private List<IEnumerator> PopCoroutines;
+    private IEnumerator FirstPopCoroutine;
+    private IEnumerator LoopPopCoroutine;
+    private List<IEnumerator> PopAnimations;
+    private List<int> PopAnimationsIndex;
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            stopPop();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(continuePop());
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartCoroutine(damageBubble(2));
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            regenerateBubble(3);
-        }
-
-    }
     private void Start()
     {
+        PopCoroutines = new List<IEnumerator>();
+        PopAnimations = new List<IEnumerator>();
+        PopAnimationsIndex = new List<int>();
         for (int i = 0; i < maxHp; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
         }
-        StartCoroutine(startPop());
-    }
-
-    private IEnumerator startPop()
-    {
-        hp = GetActiveBubbles().Count;
-        if (hp <= 0 || GetActiveBubbles().Count == 0)
-        {
-            Debug.Log("No hay burbujas para procesar.");
-            yield break;
-        }
-        while (hp > 0)
-        {
-            List<Transform> bubbles = GetActiveBubbles();
-            for (int i = 0; i < bubbles.Count; i++)
-            {
-                bubbles[i] = transform.GetChild(i);
-            }
-
-            for (int i = bubbles.Count - 1; i >= 0; i--)
-            {
-                yield return StartCoroutine(PopBubble(bubbles[i]));
-            }
-        }
-        Debug.Log("dead");
-
-        yield return null;
-
+        FirstPopCoroutine = StartPop();
+        PopCoroutines.Add(FirstPopCoroutine);
+        StartCoroutine(FirstPopCoroutine);
     }
 
     private IEnumerator PopBubble(Transform bubble)
@@ -116,10 +79,11 @@ public class BubbleController : MonoBehaviour
         hp -= 1;
     }
 
-    private IEnumerator continuePop()
+    private IEnumerator StartPop()
     {
         int amount=0;
         List<Transform> activeBubbles = GetActiveBubbles();
+        hp = activeBubbles.Count;
         amount = activeBubbles.Count;
 
         if (amount == 0 || hp <=0)
@@ -127,18 +91,24 @@ public class BubbleController : MonoBehaviour
             Debug.Log("No hay burbujas activas para continuar con el estallido.");
             yield break;
         }
-
+        
         for (int i = amount - 1; i >= 0; i--)
         {
-            yield return StartCoroutine(PopBubble(activeBubbles[i]));
+            LoopPopCoroutine = PopBubble(activeBubbles[i]);
+            PopCoroutines.Add(LoopPopCoroutine);
+            yield return StartCoroutine(LoopPopCoroutine);
         }
 
     }
 
-    private void stopPop()
+    private void StopPop()
     {
         int index=0;
-        StopAllCoroutines();
+        foreach (IEnumerator I in PopCoroutines)
+        {
+            StopCoroutine(I);
+        }
+        PopCoroutines.Clear();
         List<Transform> activeBubbles = GetActiveBubbles();
         index = activeBubbles.Count;
         if (index > 0)
@@ -148,27 +118,14 @@ public class BubbleController : MonoBehaviour
 
     }
 
-    public void restart()
-    {
-        StopAllCoroutines();
-        Transform[] bubbles = new Transform[transform.childCount];
-        for (int i = 0; i < bubbles.Length; i++)
-        {
-            Transform currentBubble = transform.GetChild(i);
-            currentBubble.gameObject.SetActive(true);
-            ResetBubble(currentBubble);
-        }
-        StartCoroutine(startPop());
-    }
-
-    public bool isDead()
+    public bool IsDead()
     {
         return (hp <= 0);
     }
 
     public IEnumerator damageBubble(int amount)
     {
-        stopPop();
+        StopPop();
 
         List<Transform> activeBubbles = new List<Transform>();
 
@@ -191,26 +148,40 @@ public class BubbleController : MonoBehaviour
 
         for (int i = activeBubbles.Count - 1; i >= activeBubbles.Count - amount; i--)
         {
-            StartCoroutine(PlayPopEffect(activeBubbles[i]));
+            IEnumerator popEffect = PlayPopEffect(activeBubbles[i]);
+            PopAnimations.Add(popEffect);
+            PopAnimationsIndex.Add(i);
+            StartCoroutine(popEffect);
             hp--;
         }
-        StartCoroutine(waitAndPop());
+        StartCoroutine(WaitAndPop());
         yield return null;
     }
 
-    IEnumerator waitAndPop()
+    IEnumerator WaitAndPop()
     {
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(continuePop());
+        StartCoroutine(StartPop());
     }
 
 
-    public void regenerateBubble(int amount)
+    public void RegenerateBubble(int amount)
     {
-        stopPop();
+        StopPop();
+        foreach(IEnumerator i in PopAnimations)
+        {
+            StopCoroutine(i);
+        }
+        foreach(int i in PopAnimationsIndex)
+        {
+            ResetBubble(transform.GetChild(i));
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        PopAnimations.Clear();
+        PopAnimationsIndex.Clear();
         int additional = amount;
         Transform[] activeBubbles = new Transform[transform.childCount];
-        if (additional + hp >= maxHp) additional = maxHp - hp; // capear la vida maxhp uwu
+        if (additional + hp >= maxHp) additional = maxHp - hp;
         for (int i = 0; i < activeBubbles.Length; i++)
         {
             if(additional != 0 && !transform.GetChild(i).gameObject.activeSelf)
@@ -223,7 +194,7 @@ public class BubbleController : MonoBehaviour
                 hp++;
             }
         }
-        StartCoroutine(continuePop());
+        StartCoroutine(StartPop());
     }
 
     private IEnumerator PlayPopEffect(Transform bubble)

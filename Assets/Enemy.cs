@@ -34,12 +34,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !collision.gameObject.GetComponent<playerMovement>().isInvincible)
         {
-            Debug.Log("Contacto con jugador");
-
-            // Activar invulnerabilidad en el jugador por 1.5 segundos
             StartCoroutine(collision.gameObject.GetComponent<playerMovement>().InvincibilityAfterHit());
-
-            // Llamar al daño
             StartCoroutine(bubbleController.damageBubble(damage));
         }
     }
