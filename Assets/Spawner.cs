@@ -6,51 +6,52 @@ using UnityEngine.Rendering;
 public class Spawner : MonoBehaviour
 {
     public int IA = 1;
-    public float timer = 40;
+    public float timer = 5;
     public float depth = 0;
     private float storedDepth = 0f;
+    private int spawningDifficulty = 0;
     [SerializeField] DepthController depthController;
-    public GameObject[] enemiesGO;
-    public Enemy[] enemies;
-    public float waitTimer;
+
+    [SerializeField] private GameObject[] enemiesdf1;
+    [SerializeField] private GameObject[] enemiesdf2;
+    [SerializeField] private GameObject[] enemiesdf3;
+    [SerializeField] private GameObject[] enemiesdf4;
+    private GameObject[][] enemiesByDifficulty;
+    private float waitTimer;
     private int roll;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        IA = Random.Range(0, 20);
-
-        enemies = new Enemy[enemiesGO.Length];
-
-        // Populate the enemies array with Enemies components
-        for (int i = 0; i < enemiesGO.Length; i++)
-        {
-            Enemy enemyComponent = enemiesGO[i].GetComponent<Enemy>();
-            if (enemyComponent != null)
-            {
-                enemies[i] = enemyComponent;
-            }
-            else
-            {
-                Debug.LogWarning($"GameObject {enemiesGO[i].name} does not have an Enemies component.");
-            }
-        }
-
+        IA = Random.Range(0, 2);
+        Debug.Log(IA);
+        enemiesByDifficulty = new GameObject[][] { enemiesdf1, enemiesdf2, enemiesdf3, enemiesdf4 };
         StartCoroutine(Spawn());
     }
 
-    private float spawnRateDepths()
+    private float getSpawnRate()
     { 
         depth = depthController.KM;
 
-        if (Mathf.Round(depth) >= storedDepth)
+        if (Mathf.Round(depth) > storedDepth)
         {
-            IA += 1;
+            IA = Mathf.Clamp(IA+1, 0, 20);
             storedDepth = Mathf.Round(depth);
         }
 
-        return Mathf.Clamp(depth, 0, timer);
+        return Mathf.Clamp(depth, 1, timer);
+    }
+
+    private int CalculateDifficulty()
+    {
+        float adjustedDepth = Mathf.Max(depth, 1f); // Avoid division by zero
+        int depthFactor = Mathf.Clamp((int)(40f / adjustedDepth), 1, 4);
+
+        if (IA + roll >= depthFactor * 4) return 3; // Index for `enemiesdf4`
+        if (IA + roll >= depthFactor * 3) return 2; // Index for `enemiesdf3`
+        if (IA + roll >= depthFactor * 2) return 1; // Index for `enemiesdf2`
+        return 0; // Index for `enemiesdf1`
     }
 
 
@@ -58,31 +59,35 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            waitTimer = Mathf.Clamp(timer / spawnRateDepths(), 0, 50 - IA);
-            Debug.Log(waitTimer);
-            yield return new WaitForSeconds(waitTimer);
-            roll = Random.Range(0, 20);
-            Debug.Log("Tiro: " + roll.ToString());
-            Debug.Log("IA " + IA.ToString());
-            if (roll >= IA)
+            waitTimer = Mathf.Clamp(timer / getSpawnRate(), 0.5f, 5);
+            yield return new WaitForSecondsRealtime(waitTimer);
+            roll = Mathf.Clamp((int)Random.Range(0, 5+depth), 0, 20);
+            Debug.Log(roll);
+            if (roll <= IA)
             {
-                if (IA + roll >= Mathf.Clamp(20/depth, 0, 20))
-                {
+                spawningDifficulty = CalculateDifficulty();
+                Debug.Log(spawningDifficulty);
+                GameObject[] enemiesToSpawn = enemiesByDifficulty[spawningDifficulty];
 
-                    foreach (Enemy enemy in enemies)
-                    {
-                        if (enemy.difficulty == 4)
-                            Instantiate(enemy, transform.position, Quaternion.identity);
-                    }
+                if (enemiesToSpawn == null || enemiesToSpawn.Length == 0)
+                {
+                    Debug.LogWarning($"No enemies available for difficulty {spawningDifficulty}!");
                 }
                 else
                 {
-                    Debug.Log("troleo");
-                }
-            }
+                    GameObject enemyPrefab = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
 
-            Debug.Log(roll + IA);
-            
+                    if (enemyPrefab != null)
+                    {
+                        Instantiate(enemyPrefab);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Null enemy found in difficulty {spawningDifficulty} array!");
+                    }
+                }
+
+            }
         }
     }
 }

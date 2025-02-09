@@ -130,7 +130,6 @@ public class BubbleController : MonoBehaviour
 
         for (int i = amount - 1; i >= 0; i--)
         {
-            Debug.Log(amount.ToString());
             yield return StartCoroutine(PopBubble(activeBubbles[i]));
         }
 

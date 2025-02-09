@@ -132,10 +132,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3297036}
   - component: {fileID: 3297037}
-  - component: {fileID: 3297038}
   m_Layer: 0
   m_Name: Circle (3)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,26 +206,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3297038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3297035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &24323073
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,10 +713,9 @@ GameObject:
   m_Component:
   - component: {fileID: 272510669}
   - component: {fileID: 272510670}
-  - component: {fileID: 272510671}
   m_Layer: 0
   m_Name: Circle (2)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -809,26 +787,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &272510671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272510668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &306262387
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,10 +797,9 @@ GameObject:
   m_Component:
   - component: {fileID: 306262388}
   - component: {fileID: 306262389}
-  - component: {fileID: 306262390}
   m_Layer: 0
   m_Name: Circle (1)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -914,26 +871,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &306262390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306262387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &397063885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,10 +1031,9 @@ GameObject:
   m_Component:
   - component: {fileID: 465359808}
   - component: {fileID: 465359809}
-  - component: {fileID: 465359810}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,25 +1105,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &465359810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465359807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies: []
 --- !u!1 &475565993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,10 +1190,9 @@ GameObject:
   m_Component:
   - component: {fileID: 484844965}
   - component: {fileID: 484844966}
-  - component: {fileID: 484844967}
   m_Layer: 0
   m_Name: Circle (7)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1348,26 +1264,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &484844967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484844964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &537845361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 537845363}
+  - component: {fileID: 537845364}
   m_Layer: 0
   m_Name: EnemySpawners
   m_TagString: Untagged
@@ -1407,6 +1304,27 @@ Transform:
   - {fileID: 484844965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &537845364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537845361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IA: 1
+  timer: 5
+  depth: 0
+  depthController: {fileID: 769495254}
+  enemiesdf1: []
+  enemiesdf2: []
+  enemiesdf3:
+  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
+  enemiesdf4: []
 --- !u!1 &549267901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,10 +1765,9 @@ GameObject:
   m_Component:
   - component: {fileID: 760513537}
   - component: {fileID: 760513538}
-  - component: {fileID: 760513539}
   m_Layer: 0
   m_Name: Circle (4)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1922,26 +1839,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &760513539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760513536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &769495253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,10 +2265,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1022725421}
   - component: {fileID: 1022725422}
-  - component: {fileID: 1022725423}
   m_Layer: 0
   m_Name: Circle (6)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2443,26 +2339,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1022725423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022725420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &1069233482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,10 +4084,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2080317529}
   - component: {fileID: 2080317530}
-  - component: {fileID: 2080317531}
   m_Layer: 0
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Spawners
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4283,26 +4158,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2080317531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080317528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2842b1e0a98c3f48b2321d093bcd6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IA: 0
-  timer: 40
-  depth: 0
-  depthController: {fileID: 769495254}
-  enemiesGO:
-  - {fileID: 594215497496932880, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
-  enemies:
-  - {fileID: 2031142077751263630, guid: 8d21d81ca037d174ab008404c520de2c, type: 3}
 --- !u!1 &2144807258
 GameObject:
   m_ObjectHideFlags: 0

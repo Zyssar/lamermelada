@@ -8,6 +8,7 @@ TagManager:
   - basicBubble
   - varyingBubble
   - Enemy
+  - Spawners
   layers:
   - Default
   - TransparentFX

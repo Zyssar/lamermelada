@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int difficulty = 1;
     public Rigidbody2D rb;
     public Transform player;
     [SerializeField] public float Speed = 2;
@@ -15,9 +14,13 @@ public class Enemy : MonoBehaviour
 
     public void Start()
     {
-        bubbleController = FindObjectOfType<BubbleController>();
+        GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("Spawners");
         player = FindObjectOfType<playerMovement>().transform;
         rb = GetComponent<Rigidbody2D>();
+
+        int randomSpawn = Random.Range(0, spawnPoint.Length);
+        rb.position = spawnPoint[randomSpawn].transform.position;
+        bubbleController = FindObjectOfType<BubbleController>();
     }
 
     public void Update()
@@ -56,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     public void MoveTowardsPlayer(Vector2 direction)
     {
-        transform.position += (Vector3)direction.normalized * difficulty * Time.deltaTime * Speed;
+        transform.position += (Vector3)direction.normalized * Time.deltaTime * Speed;
     }
 
     public IEnumerator exitScreen()
