@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<playerMovement>().InvincibilityAfterHit());
             StartCoroutine(bubbleController.damageBubble(damage));
         }
+
+        if (collision.CompareTag("muro xd"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public IEnumerator RotateTowardsDirection(Vector2 direction)
@@ -70,20 +75,11 @@ public class Enemy : MonoBehaviour
             Vector2 rightLeft = Vector2.right * rollDir;
             exitDirection = upDown + rightLeft;
         }
-        float distanceMoved = 0f;
         StartCoroutine(RotateTowardsDirection(exitDirection));
         while (true)
         {
             float moveAmount = Speed * Time.deltaTime;
             rb.position += exitDirection * moveAmount;
-            distanceMoved += moveAmount;
-
-            if (distanceMoved >= 20f) // Adjust this to how far you want the object to move
-            {
-                Destroy(gameObject);
-                yield break;
-            }
-
             yield return null;
         }
     }

@@ -9,6 +9,7 @@ TagManager:
   - varyingBubble
   - Enemy
   - Spawners
+  - muro xd
   layers:
   - Default
   - TransparentFX
