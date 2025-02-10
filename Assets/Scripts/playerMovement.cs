@@ -175,6 +175,7 @@ public class playerMovement : MonoBehaviour
                     default:
                         bubbleController.RegenerateBubble(1); break;
                 }
+                Destroy(collision.gameObject);
 
             }
         }

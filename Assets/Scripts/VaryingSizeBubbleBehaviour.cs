@@ -39,6 +39,7 @@ public class VaryingSizeBubbleBehaviour : MonoBehaviour
                 transform.localScale = new Vector3(1f, 1f);
                 break;
             default:
+                level = 1;
                 transform.localScale = new Vector3(0.4f, 0.4f);
                 break;
         }

@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    [SerializeField] public Vector3 centerPoint; // El punto central al que está anclada la cuerda
-    public float centerRadius = 0.5f; // Radio en el que se considera que el jugador está en el centro
-    public float midDistance = 5f; // Distancia media donde comienza a jalar suavemente
-    public float maxDistance = 8f; // Distancia máxima donde se jala con más fuerza
-    public float pullSpeed = 5f; // Velocidad de jalón en midDistance
+    [SerializeField] public Vector3 centerPoint;
+    public float centerRadius = 0.5f;
+    public float midDistance = 5f;
+    public float maxDistance = 8f;
+    public float pullSpeed = 5f;
     private bool isPulledBack = false;
     [SerializeField] Texture2D spriteTexture;
 
-    public LineRenderer ropeRenderer; // Componente LineRenderer para la visualización de la cuerda
+    public LineRenderer ropeRenderer;
 
     void Start()
     {
-        // Si no se asignó un LineRenderer en el inspector, agregar uno automáticamente
+        
         if (ropeRenderer == null)
         {
             ropeRenderer = gameObject.AddComponent<LineRenderer>();
         }
 
-        // Configuración inicial del LineRenderer
         ropeRenderer.startWidth = 0.1f;
         ropeRenderer.endWidth = 0.1f;
         ropeRenderer.positionCount = 2;
@@ -33,7 +32,7 @@ public class Rope : MonoBehaviour
         if (spriteTexture != null)
         {
             ropeRenderer.material.mainTexture = spriteTexture;
-            ropeRenderer.material.mainTextureScale = new Vector2(1, 1); // Adjust for tiling
+            ropeRenderer.material.mainTextureScale = new Vector2(1, 1);
         }
 
         ropeRenderer.textureMode = LineTextureMode.Tile;
@@ -41,28 +40,22 @@ public class Rope : MonoBehaviour
 
     void Update()
     {
-        // Calcular la distancia desde el punto central
         float distance = Vector3.Distance(transform.position, centerPoint);
 
-        // Verificar si el jugador está dentro del radio central
         if (distance <= centerRadius)
         {
-            // Considerar que el jugador está en el centro y detener el jalón
             isPulledBack = false;
             UpdateRopeVisual(distance);
-            return; // Salir del método para evitar cualquier lógica adicional
+            return;
         }
 
-        // Lógica de jalón según la distancia
         if (distance > midDistance && distance <= maxDistance)
         {
-            // Jalar suavemente cuando está entre midDistance y maxDistance
             Vector3 directionToCenter = (centerPoint - transform.position).normalized;
             transform.position += directionToCenter * pullSpeed * Time.deltaTime;
         }
         else if (distance > maxDistance)
         {
-            // Jalar con más fuerza cuando excede maxDistance
             Vector3 directionToCenter = (centerPoint - transform.position).normalized;
             transform.position += directionToCenter * 4 * pullSpeed * Time.deltaTime;
             isPulledBack = true;
@@ -70,35 +63,31 @@ public class Rope : MonoBehaviour
 
         if (isPulledBack)
         {
-            // Suavizar el jalón si ya estaba siendo jalado
             Vector3 directionToCenter = (centerPoint - transform.position).normalized;
             transform.position += directionToCenter * 2 * pullSpeed * Time.deltaTime;
         }
 
-        // Actualizar la visualización de la cuerda
         UpdateRopeVisual(distance);
     }
 
     void UpdateRopeVisual(float distance)
     {
-        // Establecer los puntos del LineRenderer (origen y destino)
         ropeRenderer.SetPosition(0, centerPoint);
         ropeRenderer.SetPosition(1, transform.position);
 
-        // Cambiar el color de la cuerda según la tensión
         if (distance >= maxDistance)
         {
-            ropeRenderer.startColor = Color.red; // Cuerda tensa
+            ropeRenderer.startColor = Color.red; 
             ropeRenderer.endColor = Color.red;
         }
         else if (distance > midDistance)
         {
-            ropeRenderer.startColor = Color.yellow; // Cuerda parcialmente tensa
+            ropeRenderer.startColor = Color.yellow;
             ropeRenderer.endColor = Color.yellow;
         }
         else
         {
-            ropeRenderer.startColor = Color.white; // Cuerda relajada
+            ropeRenderer.startColor = Color.white;
             ropeRenderer.endColor = Color.white;
         }
     }
